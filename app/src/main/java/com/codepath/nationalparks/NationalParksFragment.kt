@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
 import org.json.JSONArray
 
@@ -69,6 +71,11 @@ class NationalParksFragment : Fragment(), OnListFragmentInteractionListener {
             ) {
                 val dataJSON = json?.jsonObject?.get("data") as JSONArray
                 val parksRawJSON = dataJSON.toString()
+                val gson = Gson()
+                val arrayParkType = object : TypeToken<List<NationalPark>>() {}.type
+                val models: List<NationalPark> = gson.fromJson(parksRawJSON, arrayParkType)
+                recyclerView.adapter = NationalParksRecyclerViewAdapter(models, this@NationalParksFragment)
+
             }
 
             override fun onFailure(
