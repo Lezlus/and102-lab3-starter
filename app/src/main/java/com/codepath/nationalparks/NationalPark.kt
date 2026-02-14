@@ -36,5 +36,4 @@ class NationalPark {
         @SerializedName("url")
         var url: String? = null
     }
-    //TODO-STRETCH-GOALS
 }

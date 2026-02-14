@@ -69,6 +69,7 @@ class NationalParksFragment : Fragment(), OnListFragmentInteractionListener {
                 headers: Headers?,
                 json: JSON?
             ) {
+                progressBar.hide()
                 val dataJSON = json?.jsonObject?.get("data") as JSONArray
                 val parksRawJSON = dataJSON.toString()
                 val gson = Gson()
@@ -84,7 +85,7 @@ class NationalParksFragment : Fragment(), OnListFragmentInteractionListener {
                 response: String?,
                 throwable: Throwable?
             ) {
-                TODO("Not yet implemented")
+                progressBar.hide()
             }
             }
         ]
